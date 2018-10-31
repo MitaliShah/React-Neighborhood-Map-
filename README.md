@@ -14,7 +14,7 @@
 
 ###Resources I used during this project 
 *Udacity Slack channel
-*
+*https://www.youtube.com/channel/UCcWSbBe_s-T_gZRnqFbtyIA
 *
 *
 *

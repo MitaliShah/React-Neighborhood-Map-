@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import axios from 'axios';
-import Sidebar from './Components/Sidebar'
+
 
 class App extends Component {
 
@@ -43,7 +43,7 @@ class App extends Component {
       venues: response.data.response.groups[0].items 
     },this.loadMap())
   })
-    .catch(error => {
+    .catch(error => { 
       console.log("error " + error)    
    })
   }
@@ -55,29 +55,33 @@ class App extends Component {
 initMap = ()  => {  
 
       // display google map
-      const map = new window.google.maps.Map(document.getElementById('map'), {
+      let map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: 33.7000, lng: -117.7675},
         zoom: 10
       })
 
       //create an infowindow(https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple)
-      const infowindow = new window.google.maps.InfoWindow();
+      let infowindow = new window.google.maps.InfoWindow();
 
       //for each value do the following(create markers)
       this.state.venues.map(myvenue =>{
 
-      const contentString = `${myvenue.venue.name}`
+      let contentString = `${myvenue.venue.name+', '+myvenue.venue.location.city}`
       //loop over state  
 
       //create a marker
       //from https://developers.google.com/maps/documentation/javascript/markers
-      const marker = new window.google.maps.Marker({
+      let marker = new window.google.maps.Marker({
       position: {lat: myvenue.venue.location.lat, lng: myvenue.venue.location.lng},
       map: map,
+      myvenue: myvenue,
+      id: myvenue.venue.id,
+      name: myvenue.venue.name,
       draggable: true,
       animation: window.google.maps.Animation.DROP,
-      title: myvenue.venue.name 
-    })
+      title: myvenue.venue.name,
+    });
+    this.markers.push(marker);
 
     //on clicking marker adding click event listener
     marker.addListener('click', function() {
@@ -92,13 +96,26 @@ initMap = ()  => {
     })
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {query: '',
+    }
+  }
 
+  //filtering venues
+  filtermyvenue(query){
+    this.markers.forEach(marker =>{
+      console.log(marker);
+    });
+  }
 
   render() {
     return (  
       <main>
-      <Sidebar/>
       <div id='map'></div>
+      <div id='sidebar'>
+      <input value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      </div>
       </main>      
     )
   }
