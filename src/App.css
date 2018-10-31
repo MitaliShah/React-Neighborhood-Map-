@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: center;  
 }
 
 .App-logo {
@@ -29,4 +29,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#map {
+  /*100% of document(viewport height)*/
+  width:100%;
+  height: 100vh;
+ 
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
