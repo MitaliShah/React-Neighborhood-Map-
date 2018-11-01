@@ -124,6 +124,7 @@ initMap = () => {
   this.setState({
     markers: allMarkers
   });
+  this.setState({ myvenue })
 };
 
 constructor(props) {
