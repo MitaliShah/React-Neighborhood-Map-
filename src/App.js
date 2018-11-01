@@ -124,7 +124,7 @@ initMap = () => {
   this.setState({
     markers: allMarkers
   });
-  //this.setState({ myvenue }) 
+  this.setState({ filtermyvenue: this.state.venues }) 
 };
 
 constructor(props) {
@@ -154,8 +154,9 @@ filtermyvenue(query) {
       <input value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       {
-        this.state.myvenue && this.state.myvenue.length > 0 && this.state.myvenue.map((myvenue, index) => (
-          <div >
+        this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
+          <div className="venue-item">
+          {myvenue.venue.name}  
             </div>
         ))
       }

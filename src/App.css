@@ -58,3 +58,10 @@ html, body {
   z-index: 1000;
   background: rgb(190, 187, 187);
 }
+
+.venue-item{
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid grey;
+
+}
