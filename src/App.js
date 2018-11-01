@@ -88,21 +88,37 @@ initMap = () => {
       title: myvenue.venue.name
     });
 
-    //on clicking marker adding click event listener
+    // //on clicking marker adding click event listener
+    // marker.addListener("click", function() {
+      
+    //   //change content before opening infowindow
+    //   infowindow.setContent(contentString);
+
+    //   //this function will be called to open infowindow
+    //   infowindow.open(map, marker);
+    // });
     marker.addListener("click", function() {
+      //adding animation to markers
+      if(marker.getAnimation()!=null){
+        marker.setAnimation(null);
+      }else{
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+      }
+      setTimeout(()=>{marker.setAnimation(null)},1500);
+
+      window.google.maps.event.addListener(marker,'click',()=>{
+        this.infowindow.setContent(marker.name);
+        this.map.setContent(marker.position);
+        this.infowindow.open(this.map,marker);
+      });
+
       //change content before opening infowindow
       infowindow.setContent(contentString);
 
       //this function will be called to open infowindow
       infowindow.open(map, marker);
     });
-    marker.addListener("click", function() {
-      //change content before opening infowindow
-      infowindow.setContent(contentString);
 
-      //this function will be called to open infowindow
-      infowindow.open(map, marker);
-    });
     allMarkers.push(marker);
   });
   this.setState({
@@ -121,8 +137,12 @@ constructor(props) {
 filtermyvenue(query) {
   console.log(this.state);
   this.state.markers.forEach(marker => {
-    console.log(marker);
+    //console.log(marker);
+    marker.name.toLowerCase().includes(query.toLowerCase()) == true ?
+    marker.setVisible(true) :
+    marker.setVisible(false);
   });
+  this.setState({query});
 }
 
   render() {
