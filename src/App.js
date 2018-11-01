@@ -96,34 +96,34 @@ initMap = () => {
       //this function will be called to open infowindow
       infowindow.open(map, marker);
     });
-    allMarkers.push(marker);
-  
-
-    //on clicking marker adding click event listener
-    marker.addListener('click', function() {
-
+    marker.addListener("click", function() {
       //change content before opening infowindow
       infowindow.setContent(contentString);
 
-      //this function will be called to open infowindow 
+      //this function will be called to open infowindow
       infowindow.open(map, marker);
     });
+    allMarkers.push(marker);
+  });
+  this.setState({
+    markers: allMarkers
+  });
+};
 
-    })
-  }
+constructor(props) {
+  super(props);
+  this.state = {
+    query: ""
+  };
+}
 
-  constructor(props) {
-    super(props)
-    this.state = {query: '',
-    }
-  }
-
-  //filtering venues
-  filtermyvenue(query){
-    this.markers.forEach(marker =>{
-      console.log(marker);
-    });
-  }
+//filtering venues
+filtermyvenue(query) {
+  console.log(this.state);
+  this.state.markers.forEach(marker => {
+    console.log(marker);
+  });
+}
 
   render() {
     return (  
