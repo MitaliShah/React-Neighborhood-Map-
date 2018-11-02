@@ -140,11 +140,14 @@ constructor(props) {
   // this.listItemClick = this.listItemClick.bind(this);
 }
 
+
+
 listItemClick = (venues) => {
-  let marker = this.markers.filter(m => m.id === venues.id)[0]; 
+  let marker = this.markers.filter(m => m.id === venues.id)[0];
         this.state.infowindow.setContent(marker.name);
         this.state.map.setContent(marker.position);
         this.state.infowindow.open(this.state.map, marker);
+
 
 }
 
