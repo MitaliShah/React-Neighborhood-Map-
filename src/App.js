@@ -149,7 +149,7 @@ filtermyvenue(query) {
     marker.setVisible(true) :
     marker.setVisible(false);
   });
-  this.setState({filtermyvenue: f});
+  this.setState({filtermyvenue: f, query});
 }
 
   render() {
@@ -158,6 +158,7 @@ filtermyvenue(query) {
       <div id='map'></div>
       <div id='sidebar'>
       <input placeholder="filter content"value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      <br/>
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
