@@ -64,7 +64,10 @@ initMap = () => {
   let infowindow = new window.google.maps.InfoWindow();
 
   const allMarkers = [];
-
+  this.setState({
+    map: map,
+    infowindow: infowindow
+  });
   //for each value do the following(create markers)
   this.state.venues.map(myvenue => {
     let contentString = `${myvenue.venue.name +
@@ -90,7 +93,7 @@ initMap = () => {
 
     // //on clicking marker adding click event listener
     // marker.addListener("click", function() {
-      
+
     //   //change content before opening infowindow
     //   infowindow.setContent(contentString);
 
@@ -99,18 +102,20 @@ initMap = () => {
     // });
     marker.addListener("click", function() {
       //adding animation to markers
-      if(marker.getAnimation()!=null){
+      if (marker.getAnimation() != null) {
         marker.setAnimation(null);
-      }else{
+      } else {
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
       }
-      setTimeout(()=>{marker.setAnimation(null)},1500);
+      setTimeout(() => {
+        marker.setAnimation(null);
+      }, 1500);
 
-      window.google.maps.event.addListener(marker,'click',()=>{
-        this.infowindow.setContent(marker.name);
-        this.map.setContent(marker.position);
-        this.infowindow.open(this.map,marker);
-      });
+      // window.google.maps.event.addListener(marker, "click", () => {
+      //   this.state.infowindow.setContent(marker.name);
+      //   this.state.map.setContent(marker.position);
+      //   this.state.infowindow.open(this.state.map, marker);
+      // });
 
       //change content before opening infowindow
       infowindow.setContent(contentString);
@@ -124,7 +129,7 @@ initMap = () => {
   this.setState({
     markers: allMarkers
   });
-  this.setState({ filtermyvenue: this.state.venues }) 
+  this.setState({ filtermyvenue: this.state.venues });
 };
 
 constructor(props) {
@@ -136,6 +141,7 @@ constructor(props) {
 
 //filtering venues
 filtermyvenue(query) {
+  let f = this.state.venues.filter(myvenue => myvenue.name.toLowerCase().includes(query.toLowerCase()))
   console.log(this.state);
   this.state.markers.forEach(marker => {
     //console.log(marker);
@@ -155,7 +161,7 @@ filtermyvenue(query) {
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
-          <div className="venue-item">
+          <div key={index} className="venue-item">
           {myvenue.venue.name}  
             </div>
         ))
