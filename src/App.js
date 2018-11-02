@@ -137,6 +137,15 @@ constructor(props) {
   this.state = {
     query: ""
   };
+  // this.listItemClick = this.listItemClick.bind(this);
+}
+
+listItemClick = (venues) => {
+  let marker = this.markers.filter(m=>m.id === venues.id)[0];
+        this.state.infowindow.setContent(marker.name);
+        this.state.map.setContent(marker.position);
+        this.state.infowindow.open(this.state.map, marker);
+
 }
 
 //filtering venues
@@ -162,7 +171,7 @@ filtermyvenue(query) {
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
-          <div key={index} className="venue-item">
+          <div key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
           {myvenue.venue.name}  
             </div>
         ))
