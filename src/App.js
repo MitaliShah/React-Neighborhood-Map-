@@ -141,7 +141,7 @@ constructor(props) {
 
 //filtering venues
 filtermyvenue(query) {
-  let f = this.state.venues.filter(myvenue => myvenue.name.toLowerCase().includes(query.toLowerCase()))
+  let f = this.state.venues.filter(myvenue => myvenue.venue.name.toLowerCase().includes(query.toLowerCase()))
   console.log(this.state);
   this.state.markers.forEach(marker => {
     //console.log(marker);
@@ -149,7 +149,7 @@ filtermyvenue(query) {
     marker.setVisible(true) :
     marker.setVisible(false);
   });
-  this.setState({query});
+  this.setState({filtermyvenue: f});
 }
 
   render() {
@@ -157,7 +157,7 @@ filtermyvenue(query) {
       <main>
       <div id='map'></div>
       <div id='sidebar'>
-      <input value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      <input placeholder="filter content"value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
