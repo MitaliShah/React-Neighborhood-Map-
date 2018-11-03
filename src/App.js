@@ -15,6 +15,10 @@ class App extends Component {
 
   //when the react component monunts, it will call loadMap function
   componentDidMount(){
+    window.gm_authFailure = () => {
+      alert('ERROR!! \nFailed to get Google map.')
+      console.log('ERROR!! \nFailed to get Google map.')
+   }
     this.getVenues()
 
   }
@@ -171,7 +175,7 @@ filtermyvenue(query) {
   console.log(this.state);
   this.state.markers.forEach(marker => {
     //console.log(marker);
-    marker.name.toLowerCase().includes(query.toLowerCase()) == true ?
+    marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
     marker.setVisible(true) :
     marker.setVisible(false);
   });
@@ -190,7 +194,7 @@ filtermyvenue(query) {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
           <div key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
           {myvenue.venue.name}
-            </div>
+            </div>        
         ))
       }
       </div>

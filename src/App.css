@@ -57,6 +57,7 @@ html, body {
   height: 100vh;
   z-index: 1000;
   background: rgb(190, 187, 187);
+  overflow-y: scroll;
 }
 
 .venue-item{
