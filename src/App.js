@@ -61,6 +61,7 @@ initMap = () => {
     zoom: 10
   });
 
+  //initializing map
   this.map = map;
 
   //create an infowindow(https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple)
@@ -86,7 +87,8 @@ initMap = () => {
         lng: myvenue.venue.location.lng
       },
       map: map,
-      myvenue: myvenue,
+      city:myvenue.venue.location.city,
+      myvenue: myvenue,      
       id: myvenue.venue.id,
       name: myvenue.venue.name,
       draggable: true,
@@ -152,6 +154,15 @@ listItemClick = (venues) => {
         this.state.infowindow.open(this.state.map, marker);
         this.map.panBy(0,-125);
         console.log(marker);
+        //adding animation to markers
+      if (marker.getAnimation() != null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+      }
+      setTimeout(() => {
+        marker.setAnimation(null);
+      }, 1500);
 }
 
 //filtering venues
@@ -178,7 +189,7 @@ filtermyvenue(query) {
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
           <div key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
-          {myvenue.venue.name}  
+          {myvenue.venue.name}
             </div>
         ))
       }
