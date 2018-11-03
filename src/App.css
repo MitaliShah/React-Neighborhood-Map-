@@ -33,6 +33,7 @@
 }
 
 html, body {
+  
   height: 100%;
   margin: 0;
   padding: 0;
@@ -43,8 +44,6 @@ html, body {
   width:100%;
   height: 100vh;
   position: relative;
-
- 
 }
 
 /*style for sidebar*/
@@ -56,14 +55,14 @@ html, body {
   max-width: 100%;
   height: 100vh;
   z-index: 1000;
-  background: rgb(190, 187, 187);
+  background: #ffe6f0;
   overflow-y: scroll;
   box-sizing: border-box;
   
 }
 
 .venue-item{
-  
+  color :#ffc808;  
   padding: 5px;
   margin-bottom: 5px;
   border: 1px solid grey;

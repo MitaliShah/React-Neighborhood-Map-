@@ -192,8 +192,8 @@ filtermyvenue(query) {
   render() {
     return (  
       <main>
-      <div id='map'></div>
-      <div id='sidebar'>
+      <div role="application" aria-label="map" id='map'></div>
+      <div aria-label="sidebar" id='sidebar'>
       <input placeholder="Search venues"value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       <br/>
