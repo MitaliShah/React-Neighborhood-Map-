@@ -54,11 +54,14 @@ class App extends Component {
 
 //constructor function creates a new map
 initMap = () => {
+
   // display google map
   let map = new window.google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.7, lng: -117.7675 },
     zoom: 10
   });
+
+  this.map = map;
 
   //create an infowindow(https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple)
   let infowindow = new window.google.maps.InfoWindow();
@@ -78,7 +81,7 @@ initMap = () => {
     //create a marker
     //from https://developers.google.com/maps/documentation/javascript/markers
     let marker = new window.google.maps.Marker({
-      position: {
+      position: { 
         lat: myvenue.venue.location.lat,
         lng: myvenue.venue.location.lng
       },
