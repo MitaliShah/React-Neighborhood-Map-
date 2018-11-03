@@ -185,6 +185,9 @@ filtermyvenue(query) {
     marker.setVisible(true) :
     marker.setVisible(false);
   });
+  if (f.length === 0) {
+    this.state.infowindow.close();
+  }
   this.setState({filtermyvenue: f, query}); 
 }
 
