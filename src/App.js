@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   //when the react component monunts, it will call loadMap function
-  componentDidMount(){
+  componentDidMount(){  
     window.gm_authFailure = () => {
       alert('ERROR!! \nFailed to get Google map.')
       console.log('ERROR!! \nFailed to get Google map.')
@@ -216,13 +216,18 @@ filtermyvenue(query) {
 }
 
 function loadScript(source) {
-  //select script tag
-  var index = window.document.getElementsByTagName('script')[0]
-  var script = window.document.createElement('script')
-  script.src = source
-  script.async = true
-  script.defer = true
-  index.parentNode.insertBefore(script, index)
+  try {
+    //select script tag
+    var index = window.document.getElementsByTagName('script')[0]
+    var script = window.document.createElement('script')
+    script.src = source
+    script.async = true
+    script.defer = true
+    index.parentNode.insertBefore(script, index)
+   } catch (error) {
+    console.log(error);
+   alert("Sorry, That didn't work. Check console for more details");
+   }
   }
 
 export default App;
