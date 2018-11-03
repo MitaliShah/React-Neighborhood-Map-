@@ -80,7 +80,7 @@ initMap = () => {
   this.state.venues.map(myvenue => {
     let contentString = `${myvenue.venue.name +
       ", " +
-      myvenue.venue.location.city}`;
+      myvenue.venue.location.city + ", "+ myvenue.venue.location.address}`;
     //loop over state
 
     //create a marker
@@ -92,6 +92,7 @@ initMap = () => {
       },
       map: map,
       city:myvenue.venue.location.city,
+      address: myvenue.venue.location.address,
       myvenue: myvenue,      
       id: myvenue.venue.id,
       name: myvenue.venue.name,
@@ -157,7 +158,8 @@ listItemClick = (venues) => {
 
         this.state.infowindow.setContent(`${marker.name +
           ", " +
-          marker.city}`);//adding city on click of list item      
+          marker.city + ", " + marker.address}`);//adding city and address on click of list item      
+    
 
         this.map.setCenter(marker.position);
         this.state.infowindow.open(this.state.map, marker);
