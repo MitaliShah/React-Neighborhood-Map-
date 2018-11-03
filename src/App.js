@@ -77,7 +77,7 @@ initMap = () => {
     infowindow: infowindow
   });
   //for each value do the following(create markers)
-  this.state.venues.map(myvenue => {
+  this.state.venues.forEach(myvenue => {
     let contentString = `${myvenue.venue.name +
       ", " +
       myvenue.venue.location.city + ", "+ myvenue.venue.location.address}`;
