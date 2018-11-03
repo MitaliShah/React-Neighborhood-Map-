@@ -185,8 +185,9 @@ filtermyvenue(query) {
     marker.setVisible(true) :
     marker.setVisible(false);
   });
-  if (f.length === 0) {
-    this.state.infowindow.close();
+  //when there is no result found in query close the infowindow
+  if (f.length === 0) {    
+    this.state.infowindow.close();   
   }
   this.setState({filtermyvenue: f, query}); 
 }
@@ -196,15 +197,16 @@ filtermyvenue(query) {
 
   render() {
     return (  
-      <main>
+      <main>      
       <div role="application" aria-label="map" id='map'></div>
       <div aria-label="sidebar" id='sidebar'>
-      <input placeholder="Search venues"value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      <div className="header">Coffee Places - Orange County, CA</div>
+      <input tabIndex="0" className="SearchVenues" placeholder="Search venues" value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
-          <div key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
+          <div tabIndex="0" key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
           <h4>{myvenue.venue.name}</h4>
             </div>        
         ))
