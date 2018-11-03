@@ -153,10 +153,14 @@ constructor(props) {
 
 listItemClick = (venues) => {
   let marker = this.state.markers.filter(m => m.id === venues.id)[0];
-        this.state.infowindow.setContent(marker.name);
+        // this.state.infowindow.setContent(marker.name);
+
+        this.state.infowindow.setContent(`${marker.name +
+          ", " +
+          marker.city}`);//adding city on click of list item      
+
         this.map.setCenter(marker.position);
         this.state.infowindow.open(this.state.map, marker);
-        this.map.panBy(0,-125);
         console.log(marker);
         //adding animation to markers
       if (marker.getAnimation() != null) {
@@ -179,21 +183,24 @@ filtermyvenue(query) {
     marker.setVisible(true) :
     marker.setVisible(false);
   });
-  this.setState({filtermyvenue: f, query});
+  this.setState({filtermyvenue: f, query}); 
 }
+
+
+
 
   render() {
     return (  
       <main>
       <div id='map'></div>
       <div id='sidebar'>
-      <input placeholder="filter content"value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      <input placeholder="Search venues"value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
           <div key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
-          {myvenue.venue.name}
+          <h4>{myvenue.venue.name}</h4>
             </div>        
         ))
       }
