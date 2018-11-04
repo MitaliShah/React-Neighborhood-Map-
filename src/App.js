@@ -207,7 +207,7 @@ filtermyvenue(query) {
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
-          <div tabIndex="-1" key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
+          <div tabIndex="0" key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
           <h4>{myvenue.venue.name}</h4>
             </div>        
         ))
