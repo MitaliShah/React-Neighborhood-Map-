@@ -10,6 +10,10 @@
 
 The service worker works only in production mode. Please run: npm run build for production mode.
 
+###Browser support
+
+*Tested this project on chrome, firefox, works on iPad Safari, IE Edge and mobile devices
+
 ##How to use the application
 *npm install
 *npm strat

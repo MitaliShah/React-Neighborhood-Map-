@@ -202,14 +202,15 @@ filtermyvenue(query) {
       <div role="application" aria-label="map" id='map'></div>
       <div aria-label="sidebar" id='sidebar'>
       <div className="header">Coffee Places - Orange County, CA</div>
-      <input type="text" tabIndex="0" className="SearchVenues" placeholder="Search venues" value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      <input type="text" autoFocus="autofocus" tabIndex="0" className="SearchVenues" placeholder="Search venues" value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
-          <div tabIndex="0" key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
-          <h4>{myvenue.venue.name}</h4>
-            </div>        
+            <div tabIndex="-1" key={index} className="venue-item">
+                {/* <h4>{myvenue.venue.name}</h4> */}
+                <button onClick={()=>{this.listItemClick(myvenue.venue)}}>{myvenue.venue.name}</button>
+            </div>
         ))
       }
       </div>
