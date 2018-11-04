@@ -22,6 +22,7 @@ The service worker works only in production mode. Please run: npm run build for 
 ###Resources I used during this project 
 *The Fend lessons for React & Google Maps API(info window, marker, and animation functionality).
 *Udacity Slack channel
+*https://keycode.info/ to know what is the code for enter key
 *Udacity Project coaches
 *https://www.youtube.com/channel/UCcWSbBe_s-T_gZRnqFbtyIA for rendering google map without using third party library and using Foursquare for getting coffee places near orange county area
 

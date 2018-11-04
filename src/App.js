@@ -76,7 +76,7 @@ initMap = () => {
     map: map,
     infowindow: infowindow
   });
-  //for each value do the following(create markers)
+  //for each value do the following(create markers with name, city and location)
   this.state.venues.forEach(myvenue => {
     let contentString = `${myvenue.venue.name +
       ", " +
@@ -201,12 +201,12 @@ filtermyvenue(query) {
       <div role="application" aria-label="map" id='map'></div>
       <div aria-label="sidebar" id='sidebar'>
       <div className="header">Coffee Places - Orange County, CA</div>
-      <input tabIndex="0" className="SearchVenues" placeholder="Search venues" value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
+      <input type="text" tabIndex="0" className="SearchVenues" placeholder="Search venues" value={this.state.query} onChange={(e)=>{this.filtermyvenue(e.target.value)}}/>
       <br/>
       <br/>
       {
         this.state.filtermyvenue && this.state.filtermyvenue.length > 0 && this.state.filtermyvenue.map((myvenue, index) => (
-          <div tabIndex="0" key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
+          <div tabIndex="-1" key={index} className="venue-item" onClick={()=>{this.listItemClick(myvenue.venue)}}>
           <h4>{myvenue.venue.name}</h4>
             </div>        
         ))
