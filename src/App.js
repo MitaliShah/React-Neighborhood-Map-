@@ -49,7 +49,8 @@ class App extends Component {
     },this.loadMap())
   })
     .catch(error => { 
-      console.log("error " + error)    
+      console.log("error " + error);
+      alert("Sorry, That didn't work. Check console for more details"); 
    })
   }
  
